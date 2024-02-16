@@ -68,6 +68,19 @@ def worldlist_generator():
     browse_button.place(x=490, y=185)
     
 
+    progress_bar = ttk.Progressbar(WIN, length=475, mode='determinate')
+    progress_bar.place(x=30, y=260)
+    
+    
+    percentage_label = Label(WIN, text="", font=tfont_canvas, bg="white", fg="black")
+    percentage_label.place(x=515, y=260)  # Adjust the position as needed
+
+    generate_button = Button(WIN, text="Generate", font=tfont_canvas, bg="black", fg="white", command=generate)
+    generate_button.place(x=250, y=300)
+    
+    reset_button = Button(WIN, text="Reset", font=tfont_canvas, bg="black", fg="white", command=reset)
+    reset_button.place(x=350, y=300)
+    
     WIN.mainloop()
     
 worldlist_generator()
