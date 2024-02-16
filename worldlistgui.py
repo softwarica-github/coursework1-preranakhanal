@@ -67,6 +67,31 @@ def worldlist_generator():
     browse_button = Button(WIN, text="Browse", font=tfont_canvas, command=browse)
     browse_button.place(x=490, y=185)
     
+    def completed_TopLevel():
+        WIN_top = Toplevel(bg='white')
+        WIN_top.title("Sucess")  
+        WIN_top.geometry('300x150')
+        tfont_tup = ("Comic Sans MS", 15)
+        def reset_click():
+            reset()
+            WIN_top.destroy()
+            
+            
+        def close_click():
+            WIN_top.destroy()
+            WIN.destroy()
+        
+        message = Label(WIN_top, bg='white', text="Wordlist generation completed!", font=tfont_tup, justify="center",foreground="black")  
+        message.pack()
+        
+        reset_button = Button(WIN_top, bg='white', text="Reset", background='Red', foreground="Black", font=("Comic Sans MS", 12), command=reset_click)
+        reset_button.place(x=108, y=80)
+        
+        close_button = Button(WIN_top, bg='white', text="Close", background='Red', foreground="Black", font=("Comic Sans MS", 12), command=close_click)
+        close_button.place(x=180, y=80)
+        
+        WIN_top.mainloop()
+    
 
     progress_bar = ttk.Progressbar(WIN, length=475, mode='determinate')
     progress_bar.place(x=30, y=260)
