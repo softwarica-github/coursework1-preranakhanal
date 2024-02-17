@@ -92,6 +92,41 @@ def worldlist_generator():
         
         WIN_top.mainloop()
     
+    def generate():
+    # Get the selected character sets
+        characters = ''
+        if small_letter_var.get() == 1:
+            characters += string.ascii_lowercase
+        if capital_letter_var.get() == 1:
+            characters += string.ascii_uppercase
+        if number_var.get() == 1:
+            characters += string.digits
+        if special_var.get() == 1:
+            characters += string.punctuation
+        if custom_char_entry.get() != '':
+            characters += custom_char_entry.get()
+
+        # Get the word length
+        length = int(pass_length_entry.get())
+
+        # Calculate the total number of words
+        total_words = len(characters) ** length
+
+        # Open the output file
+        with open(file_location.get(), 'w') as f:
+            # Generate all combinations of the characters of the specified length
+            for i, word in enumerate(itertools.product(characters, repeat=length), 1):
+                # Write the word to the file
+                f.write(''.join(word) + '\n')
+
+                # Update the progress bar
+                progress = i / total_words * 100
+                progress_bar['value'] = progress
+                percentage_label['text'] = f"{progress:.2f}%"  # Update the percentage label
+                WIN.update_idletasks()
+                time.sleep(0.01)
+
+        completed_TopLevel()
 
     progress_bar = ttk.Progressbar(WIN, length=475, mode='determinate')
     progress_bar.place(x=30, y=260)
