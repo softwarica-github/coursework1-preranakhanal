@@ -127,6 +127,18 @@ def worldlist_generator():
                 time.sleep(0.01)
 
         completed_TopLevel()
+    
+    def reset():
+        # Reset all fields and progress bar
+        small_letter_var.set(0)
+        capital_letter_var.set(0)
+        number_var.set(0)
+        special_var.set(0)
+        custom_char_entry.config(state=DISABLED)
+        custom_char_entry.delete(0, END)
+        pass_length_entry.delete(0, END)
+        file_location.delete(0, END)
+        progress_bar['value'] = 0  
 
     progress_bar = ttk.Progressbar(WIN, length=475, mode='determinate')
     progress_bar.place(x=30, y=260)
